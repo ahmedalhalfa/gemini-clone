@@ -9,7 +9,7 @@
 
 #root {
   /* min-height: 100vh; */
-  max-height: 100vh;
+  height: 100vh;
   display: flex;
   animation: fadeIn 1.5s;
 }

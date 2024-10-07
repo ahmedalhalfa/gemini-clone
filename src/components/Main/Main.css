@@ -181,7 +181,15 @@
 
 @media (max-width: 600px) {
   .main .card {
-    height: 100px;
+    height: 50px;
+  }
+  .main .card p {
+    font-size: 12px;
+  }
+  .main .card img {
+    width: 20px;
+    top: 2px;
+    right: 2px;
   }
   .main-bottom input {
     flex: none;
