@@ -179,10 +179,17 @@
   line-height: 1.8;
 }
 
-@media (max-width: 600px) { 
+@media (max-width: 600px) {
+  .main .card {
+    height: 100px;
+  }
   .main-bottom input {
     flex: none;
-    width: 150px;
+    width: 80%;
+  }
+
+  .main .greet {
+    font-size: 30px;
   }
   .main-bottom img {
     width: 20px;
