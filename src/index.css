@@ -9,7 +9,7 @@
 
 #root {
   /* min-height: 100vh; */
-  height: 90vh;
+  height: 100vh;
   display: flex;
   animation: fadeIn 1.5s;
 }
@@ -23,3 +23,8 @@
   }
 }
 
+@media (max-width: 600px) {
+  #root {
+    height: 90vh;
+  }
+}
