@@ -193,7 +193,7 @@
   }
   .main-bottom input {
     flex: none;
-    width: 80%;
+    width: 70%;
   }
 
   .main .greet {
@@ -207,5 +207,8 @@
   }
   .search-box div {
     gap: 5px;
+  }
+  .search-box img {
+    width: 20px;
   }
 }
