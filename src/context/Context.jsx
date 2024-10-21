@@ -11,6 +11,7 @@ const ContextProvider = (props) => {
   const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState('');
+  const [conversationHistory, setConversationHistory] = useState([]);
 
   const delayParam = (index, nextWord) => {
     setTimeout(() => {
@@ -46,6 +47,7 @@ const ContextProvider = (props) => {
     }
     setLoading(false);
     setInput('');
+    setConversationHistory((prev) => [...prev, { prompt: prompt || input, response: resultBold }]);
   };
 
   const contextValue = {
@@ -60,6 +62,7 @@ const ContextProvider = (props) => {
     input,
     setInput,
     newChat,
+    conversationHistory,
   };
 
   return <Context.Provider value={contextValue}>{props.children}</Context.Provider>;

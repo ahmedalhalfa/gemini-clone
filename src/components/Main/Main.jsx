@@ -12,6 +12,7 @@ const Main = () => {
     resultData,
     input,
     setInput,
+    conversationHistory
   } = useContext(Context);
 
   return (
@@ -51,22 +52,18 @@ const Main = () => {
         ) : (
           <>
             <div className="result">
-              <div className="result-title">
-                <img src={assets.user_icon} alt="" />
-                <p>{recentPrompt}</p>
-              </div>
-              <div className="result-data">
-                <img src={assets.gemini_icon} alt="" />
-                {loading ? (
-                  <div className="loader">
-                    <hr />
-                    <hr />
-                    <hr />
+              {conversationHistory.map((entry, index) => (
+                <div key={index} className="conversation-entry">
+                  <div className="result-title">
+                    <img src={assets.user_icon} alt="" />
+                    <p>{entry.prompt}</p>
                   </div>
-                ) : (
-                  <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
-                )}
-              </div>
+                  <div className="result-data">
+                    <img src={assets.gemini_icon} alt="" />
+                    <p dangerouslySetInnerHTML={{ __html: entry.response }}></p>
+                  </div>
+                </div>
+              ))}
             </div>
           </>
         )}
@@ -77,10 +74,15 @@ const Main = () => {
               value={input}
               type="text"
               placeholder="Enter a prompt here"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  onSent();
+                }
+              }}
             ></input>
             <div>
-              <img src={assets.gallery_icon} alt="" />
-              <img src={assets.mic_icon} alt="" />
+              {/* <img src={assets.gallery_icon} alt="" />
+              <img src={assets.mic_icon} alt="" /> */}
               {input ? (<>
                 <img
                   onClick={() => {
@@ -89,7 +91,7 @@ const Main = () => {
                   src={assets.send_icon}
                   alt=""
                 />
-              </>): null}
+              </>) : null}
             </div>
           </div>
           <p className="bottom-info">Gemini may display inaccurate info, incorect facts, or biased content.</p>
