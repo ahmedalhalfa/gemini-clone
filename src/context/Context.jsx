@@ -30,7 +30,7 @@ const ContextProvider = (props) => {
     setShowResult(true);
     setRecentPrompt(prompt || input);
     if (!prompt) setPrevPrompts([...prevPrompts, input]);
-    const result = await runChat(prompt || input);
+    const result = await runChat(prompt || input, conversationHistory);
     let resultArray = result.split('**');
     let resultBold = '';
     for (let i = 0; i < resultArray.length; i++) {
@@ -47,7 +47,7 @@ const ContextProvider = (props) => {
     }
     setLoading(false);
     setInput('');
-    setConversationHistory((prev) => [...prev, { prompt: prompt || input, response: resultBold }]);
+    setConversationHistory((prev) => [...prev, { prompt: prompt || input, response: resultBold, role: 'user' }]);
   };
 
   const contextValue = {

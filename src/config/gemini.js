@@ -21,12 +21,16 @@ const generationConfig = {
   responseMimeType: 'text/plain',
 };
 
-async function runChat(prompt) {
+async function runChat(prompt, chatHistory) {
+  // console.log(chatHistory.filter((entry) => entry.prompt && entry.response));
   const chatSession = model.startChat({
     generationConfig,
+    history: []//chatHistory.map((entry) => ({
+    //   role: entry.role,
+    //   parts: entry.response,
+    // })),
     // safetySettings: Adjust safety settings
     // See https://ai.google.dev/gemini-api/docs/safety-settings
-    history: [],
   });
   const result = await chatSession.sendMessage(prompt);
   return result.response.text();

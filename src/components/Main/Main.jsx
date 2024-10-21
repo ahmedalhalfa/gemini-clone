@@ -52,18 +52,20 @@ const Main = () => {
         ) : (
           <>
             <div className="result">
-              {conversationHistory.map((entry, index) => (
-                <div key={index} className="conversation-entry">
-                  <div className="result-title">
-                    <img src={assets.user_icon} alt="" />
-                    <p>{entry.prompt}</p>
+              {conversationHistory.filter(entry => entry.prompt && entry.response).map((entry, index) => {
+                return (
+                  <div key={index} className="conversation-entry">
+                    <div className="result-title">
+                      <img src={assets.user_icon} alt="" />
+                      <p>{entry.prompt}</p>
+                    </div>
+                    <div className="result-data">
+                      <img src={assets.gemini_icon} alt="" />
+                      <p dangerouslySetInnerHTML={{ __html: entry.response }}></p>
+                    </div>
                   </div>
-                  <div className="result-data">
-                    <img src={assets.gemini_icon} alt="" />
-                    <p dangerouslySetInnerHTML={{ __html: entry.response }}></p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </>
         )}
